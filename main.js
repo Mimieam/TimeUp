@@ -10,15 +10,36 @@ const BrowserWindow = electron.BrowserWindow;
 // be closed automatically when the JavaScript object is garbage collected.
 let mainWindow;
 
+app.commandLine.appendSwitch('enable-transparent-visuals');
 function createWindow () {
+var atomScreen = require('screen');
+
+// app.on('ready', function() {
+  var display = atomScreen.getAllDisplays();
+// });
+console.log(display)
+console.log(display[0]['workArea'])
+  var newX = display[0]['workArea']['width'] - 275;
+  var newY = display[0]['workArea']['height'] - 110;
   // Create the browser window.
-  mainWindow = new BrowserWindow({width: 800, height: 600});
+  mainWindow = new BrowserWindow({
+    x: newX,
+    y: newY,
+    width: 265,
+    height: 100,
+    transparent: true,
+    alwaysOnTop: true,
+
+    // backgroundColor: "#80BADA55",
+    frame: false
+  });
 
   // and load the index.html of the app.
   mainWindow.loadURL('file://' + __dirname + '/index.html');
 
   // Open the DevTools.
   mainWindow.webContents.openDevTools();
+  app.mainWindow = mainWindow
 
   // Emitted when the window is closed.
   mainWindow.on('closed', function() {
