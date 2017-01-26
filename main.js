@@ -17,8 +17,8 @@ var atomScreen = require('screen');
 // app.on('ready', function() {
   var display = atomScreen.getAllDisplays();
 // });
-console.log(display)
-console.log(display[0]['workArea'])
+// console.log(display)
+// console.log(display[0]['workArea'])
   var newX = display[0]['workArea']['width'] - 275;
   var newY = display[0]['workArea']['height'] - 110;
   // Create the browser window.
@@ -38,7 +38,7 @@ console.log(display[0]['workArea'])
   mainWindow.loadURL('file://' + __dirname + '/index.html');
 
   // Open the DevTools.
-  mainWindow.webContents.openDevTools();
+  // mainWindow.webContents.openDevTools();
   app.mainWindow = mainWindow
 
   // Emitted when the window is closed.
